@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise Ransomware Outbreak &amp; Containment Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-wrap">
+          <div class="brand-badge">IR</div>
+          <div>
+            <p class="eyebrow">Threat Intel</p>
+            <h1>Ransomware Ops</h1>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="{{ url_for('dashboard') }}" class="nav-link {% if request.path == '/' %}active{% endif %}">SOC Overview</a>
+          <a href="{{ url_for('incidents_page') }}" class="nav-link {% if '/incidents' in request.path %}active{% endif %}">Incident Management</a>
+          <a href="{{ url_for('forensics_page') }}" class="nav-link {% if '/forensics' in request.path %}active{% endif %}">Evidence Lab</a>
+          <a href="{{ url_for('report_page') }}" class="nav-link {% if '/report' in request.path %}active{% endif %}">Investigation Report</a>
+          <a href="{{ url_for('generate_evidence') }}" class="nav-link accent">Generate Evidence</a>
+        </nav>
+
+        <div class="sidebar-foot">
+          <span class="status-dot"></span>
+          Synthetic scenario active
+        </div>
+      </aside>
+
+      <main class="content-panel">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-stack">
+              {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

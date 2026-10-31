@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+  <div>
+    <p class="eyebrow accent">Incident Detail</p>
+    <h2>{{ incident.incident_id }} — {{ incident.title }}</h2>
+  </div>
+  <a class="button-link" href="{{ url_for('incidents_page') }}">Back to incidents</a>
+</section>
+
+<div class="panel-grid detail-grid">
+  <div class="panel">
+    <div class="detail-row"><span>Severity</span><strong><span class="severity pill {{ incident.severity|lower }}">{{ incident.severity }}</span></strong></div>
+    <div class="detail-row"><span>Status</span><strong>{{ incident.status }}</strong></div>
+    <div class="detail-row"><span>Detection time</span><strong>{{ incident.detection_time }}</strong></div>
+    <div class="detail-row"><span>Initial access vector</span><strong>{{ incident.initial_access_vector }}</strong></div>
+    <div class="detail-row"><span>Threat actor</span><strong>{{ incident.suspected_threat_actor }}</strong></div>
+    <div class="detail-row"><span>Assigned analyst</span><strong>{{ incident.assigned_analyst }}</strong></div>
+  </div>
+
+  <div class="panel">
+    <div class="detail-row"><span>Containment</span><strong>{{ incident.containment_status }}</strong></div>
+    <div class="detail-row"><span>Recovery</span><strong>{{ incident.recovery_status }}</strong></div>
+    <div class="detail-row"><span>Affected hosts</span><strong>{{ incident.affected_hosts | join(', ') }}</strong></div>
+    <div class="detail-row"><span>MITRE ATT&CK</span><strong>{{ incident.mitre_techniques | join(', ') }}</strong></div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-header">
+    <h3>Investigation notes</h3>
+  </div>
+  <p>{{ incident.investigation_notes }}</p>
+  <p>{{ incident.description }}</p>
+</div>
+{% endblock %}

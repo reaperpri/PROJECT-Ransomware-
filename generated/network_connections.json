@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "source": "Network Connections",
+    "generated_at": "2026-10-31T05:42:35Z",
+    "format": "JSON"
+  },
+  "connections": [
+    {
+      "timestamp": "2026-09-15T08:20:32Z",
+      "source_ip": "172.22.10.42",
+      "destination_ip": "91.210.248.18",
+      "destination_domain": "update.financecloud.local",
+      "protocol": "HTTP",
+      "bytes_sent": 1622,
+      "suspicious": true
+    },
+    {
+      "timestamp": "2026-09-15T08:36:20Z",
+      "source_ip": "172.22.10.42",
+      "destination_ip": "172.22.10.10",
+      "destination_domain": "fin-dc-01.financecloud.local",
+      "protocol": "SMB",
+      "bytes_sent": 4052,
+      "suspicious": true
+    },
+    {
+      "timestamp": "2026-09-15T08:53:10Z",
+      "source_ip": "172.22.10.51",
+      "destination_ip": "192.168.44.9",
+      "destination_domain": "ui-ops.financecloud.local",
+      "protocol": "HTTPS",
+      "bytes_sent": 660,
+      "suspicious": true
+    }
+  ]
+}

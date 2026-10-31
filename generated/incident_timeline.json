@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "scenario": "Enterprise Ransomware Outbreak & Containment Architecture",
+    "generated_at": "2026-10-31T05:42:35Z",
+    "source": "Synthetic Evidence Generator",
+    "environment": "Yenepoya University Research Grid",
+    "classification": "SIMULATED INTERNAL C2 / RANSOMWARE DEMO"
+  },
+  "events": [
+    {
+      "timestamp": "2026-09-15T08:20:17Z",
+      "host": "FIN-WS-204",
+      "endpoint": "172.22.10.42",
+      "event": "PowerShell process spawned from a PDF viewer",
+      "source": "windows_event_log",
+      "severity": "High",
+      "technique": "T1059.001"
+    },
+    {
+      "timestamp": "2026-09-15T08:28:45Z",
+      "host": "FIN-WS-204",
+      "endpoint": "172.22.10.42",
+      "event": "Credential dumping attempt using Mimikatz-like sequence",
+      "source": "powershell_log",
+      "severity": "Critical",
+      "technique": "T1003"
+    },
+    {
+      "timestamp": "2026-09-15T08:36:12Z",
+      "host": "FIN-DC-01",
+      "endpoint": "172.22.10.10",
+      "event": "Kerberos ticket enumeration and lateral movement to domain controller",
+      "source": "endpoint_activity",
+      "severity": "Critical",
+      "technique": "T1550"
+    },
+    {
+      "timestamp": "2026-09-15T08:42:04Z",
+      "host": "FIN-SRV-12",
+      "endpoint": "172.22.10.51",
+      "event": "File encryption service active; .locked extension written to shared drive",
+      "source": "network_connections",
+      "severity": "Critical",
+      "technique": "T1486"
+    },
+    {
+      "timestamp": "2026-09-15T08:53:19Z",
+      "host": "FIN-NET-09",
+      "endpoint": "172.22.10.77",
+      "event": "Beaconing to malicious domain ui-ops.financecloud.local",
+      "source": "network_connections",
+      "severity": "High",
+      "technique": "T1071"
+    }
+  ]
+}

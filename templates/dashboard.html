@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+  <div>
+    <p class="eyebrow accent">Operations Dashboard</p>
+    <h2>Enterprise ransomware containment overview</h2>
+  </div>
+  <div class="header-badge">Simulated data • IR lab</div>
+</section>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="label">Total incidents</div>
+    <div class="value">{{ metrics.total_incidents }}</div>
+    <div class="meta">Across 6 hosts</div>
+  </div>
+  <div class="stat-card critical">
+    <div class="label">Critical incidents</div>
+    <div class="value">{{ metrics.critical_incidents }}</div>
+    <div class="meta">1 active critical case</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Affected endpoints</div>
+    <div class="value">{{ metrics.affected_endpoints }}</div>
+    <div class="meta">Workstations + file servers</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Contained endpoints</div>
+    <div class="value">{{ metrics.contained_endpoints }}</div>
+    <div class="meta">Quarantine remains active</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Pending investigations</div>
+    <div class="value">{{ metrics.pending_investigations }}</div>
+    <div class="meta">Credential abuse review</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Recovery status</div>
+    <div class="value small">{{ metrics.recovery_status }}</div>
+    <div class="meta">Ecosystem restoration ongoing</div>
+  </div>
+</div>
+
+<div class="panel-grid two-col">
+  <div class="panel large">
+    <div class="panel-header">
+      <h3>Severity distribution</h3>
+      <span>Live tactical overview</span>
+    </div>
+    <canvas data-chart="bar" data-chart-set="severity"></canvas>
+  </div>
+  <div class="panel large">
+    <div class="panel-header">
+      <h3>Incident timeline</h3>
+      <span>Last 6 days</span>
+    </div>
+    <canvas data-chart="line" data-chart-set="timeline"></canvas>
+  </div>
+</div>
+
+<div class="panel-grid two-col">
+  <div class="panel">
+    <div class="panel-header">
+      <h3>Threat activity</h3>
+      <span>MITRE correlated</span>
+    </div>
+    <canvas data-chart="doughnut" data-chart-set="threat_activity"></canvas>
+  </div>
+  <div class="panel">
+    <div class="panel-header">
+      <h3>Recent security alerts</h3>
+      <span>Analyst queue</span>
+    </div>
+    <ul class="alert-list">
+      {% for alert in alerts %}
+        <li>{{ alert }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<script>
+  window.dashboardCharts = {{ chart_data | tojson }};
+</script>
+{% endblock %}

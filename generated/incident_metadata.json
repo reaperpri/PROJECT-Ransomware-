@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-31T05:42:35Z",
+    "incident_scope": "enterprise ransomware demonstration",
+    "team": "Group 2",
+    "institution": "Yenepoya University"
+  },
+  "summary": {
+    "total_incidents": 3,
+    "critical_incidents": 1,
+    "affected_endpoints": 6,
+    "contained_endpoints": 3,
+    "pending_investigations": 2,
+    "recovery_status": "In Progress",
+    "severity_distribution": {
+      "Critical": 1,
+      "High": 1,
+      "Medium": 1,
+      "Low": 0
+    }
+  },
+  "incidents": [
+    {
+      "incident_id": "IR-2026-041",
+      "title": "Ransomware deployment on FIN-WS-204",
+      "severity": "Critical",
+      "status": "Contained",
+      "detection_time": "2026-09-15T08:42:00Z",
+      "description": "Malicious PowerShell script executed on a finance workstation and began encrypting mapped shares.",
+      "affected_hosts": [
+        "FIN-WS-204",
+        "FIN-SRV-12",
+        "FIN-DC-01"
+      ],
+      "initial_access_vector": "Phishing lure containing a disguised Adobe PDF and embedded PowerShell payload",
+      "suspected_threat_actor": "TA-17 / FogCrypt Group",
+      "mitre_techniques": [
+        "T1059.001",
+        "T1078",
+        "T1550",
+        "T1486"
+      ],
+      "assigned_analyst": "M. Rodriguez",
+      "investigation_notes": "Domain credential abuse was observed after execution. The threat actor likely moved laterally to file shares before encryption started.",
+      "containment_status": "Network isolation completed",
+      "recovery_status": "Recovery in progress"
+    },
+    {
+      "incident_id": "IR-2026-042",
+      "title": "Lateral movement and credential access",
+      "severity": "High",
+      "status": "Investigating",
+      "detection_time": "2026-09-15T08:36:00Z",
+      "description": "Kerberos and local credential access attempts were observed on network services and domain endpoints.",
+      "affected_hosts": [
+        "FIN-DC-01",
+        "FIN-APP-03"
+      ],
+      "initial_access_vector": "Service account abuse and remote admin credential reuse",
+      "suspected_threat_actor": "Shadow network operators",
+      "mitre_techniques": [
+        "T1003",
+        "T1555",
+        "T1021.002"
+      ],
+      "assigned_analyst": "L. Bennett",
+      "investigation_notes": "Evidence suggests credential dumping from the finance workstation followed by lateral movement attempts.",
+      "containment_status": "Ports blocked",
+      "recovery_status": "Pending validation"
+    },
+    {
+      "incident_id": "IR-2026-043",
+      "title": "Suspicious beaconing and exfiltration",
+      "severity": "Medium",
+      "status": "Monitoring",
+      "detection_time": "2026-09-15T08:53:00Z",
+      "description": "Beaconing to external infrastructure matched a known malware command-and-control domain.",
+      "affected_hosts": [
+        "FIN-NET-09",
+        "FIN-WS-204"
+      ],
+      "initial_access_vector": "External C2 and encoded command execution",
+      "suspected_threat_actor": "Unattributed extortion group",
+      "mitre_techniques": [
+        "T1071.001",
+        "T1105",
+        "T1567"
+      ],
+      "assigned_analyst": "S. Narayan",
+      "investigation_notes": "Traffic was isolated from the enterprise edge and no direct data theft was confirmed at this stage.",
+      "containment_status": "Packet filtering active",
+      "recovery_status": "Awaiting forensics closure"
+    }
+  ]
+}

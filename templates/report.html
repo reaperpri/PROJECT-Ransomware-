@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+  <div>
+    <p class="eyebrow accent">Investigation Report</p>
+    <h2>Professional summary for executive and technical stakeholders</h2>
+  </div>
+  <a class="button-link" href="{{ url_for('download_report') }}">Download report</a>
+</section>
+
+<div class="panel">
+  <pre class="report-box">{{ report }}</pre>
+</div>
+{% endblock %}

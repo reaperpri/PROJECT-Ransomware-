@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+  <div>
+    <p class="eyebrow accent">Digital Forensics Evidence Laboratory</p>
+    <h2>Upload, analyze, and validate evidence artifacts</h2>
+  </div>
+  <a class="button-link" href="{{ url_for('generate_evidence') }}">Refresh synthetic pack</a>
+</section>
+
+<div class="panel-grid two-col">
+  <div class="panel">
+    <div class="panel-header">
+      <h3>Evidence upload</h3>
+      <span>Untrusted data only</span>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+      <label for="evidence_file">Select evidence</label>
+      <input type="file" id="evidence_file" name="evidence_file" accept=".json,.csv,.txt,.log" required />
+      <p class="helper">Allowed types: JSON, CSV, TXT, LOG | Max size: 5 MB</p>
+      <button type="submit" class="primary-button">Analyze evidence</button>
+    </form>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header">
+      <h3>Available synthetic evidence</h3>
+      <span>Downloads</span>
+    </div>
+    <ul class="download-list">
+      {% for file_name in evidence_files %}
+        <li>
+          <span>{{ file_name }}</span>
+          <a href="{{ url_for('serve_generated_file', filename=file_name) }}" class="download-link">Download</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% if analysis %}
+<div class="panel-grid detail-grid">
+  <div class="panel">
+    <div class="panel-header"><h3>Evidence summary</h3></div>
+    <div class="detail-row"><span>Filename</span><strong>{{ analysis.filename }}</strong></div>
+    <div class="detail-row"><span>File type</span><strong>{{ analysis.file_type }}</strong></div>
+    <div class="detail-row"><span>SHA-256</span><strong>{{ analysis.sha256 }}</strong></div>
+    <div class="detail-row"><span>Integrity</span><strong>{{ analysis.integrity_status }}</strong></div>
+    <div class="detail-row"><span>Suspicious count</span><strong>{{ analysis.summary.iocs_count }}</strong></div>
+    <div class="detail-row"><span>Timeline entries</span><strong>{{ analysis.summary.timeline_events }}</strong></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><h3>IOC matches</h3></div>
+    {% if analysis.iocs %}
+      <ul class="ioc-list">
+        {% for ioc in analysis.iocs[:10] %}
+          <li>{{ ioc }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No IOC patterns matched the supplied artifact.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="panel-grid two-col">
+  <div class="panel">
+    <div class="panel-header"><h3>Suspicious activity</h3></div>
+    {% if analysis.suspicious_activity %}
+      <ul class="alert-list">
+        {% for item in analysis.suspicious_activity %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No suspicious keywords identified.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><h3>Evidence timeline</h3></div>
+    {% if analysis.timeline %}
+      <ul class="timeline-list">
+        {% for item in analysis.timeline %}
+          <li><strong>{{ item.timestamp }}</strong> — {{ item.host }} — {{ item.activity }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No structured timestamps were found in the artifact.</p>
+    {% endif %}
+  </div>
+</div>
+
+<a class="primary-button inline-button" href="{{ url_for('download_report') }}">Download investigation report</a>
+{% endif %}
+{% endblock %}

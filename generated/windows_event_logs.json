@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "source": "Windows Event Logs",
+    "generated_at": "2026-10-31T05:42:35Z",
+    "host_count": 5,
+    "format": "JSON"
+  },
+  "events": [
+    {
+      "timestamp": "2026-09-15T08:20:17Z",
+      "computer_name": "FIN-WS-204",
+      "event_id": 4688,
+      "event_name": "New Process Created",
+      "process_name": "powershell.exe",
+      "command_line": "powershell.exe -nop -window hidden -enc JABjAGEAbAB...",
+      "user": "FIN\\jdoe",
+      "severity": "High"
+    },
+    {
+      "timestamp": "2026-09-15T08:27:11Z",
+      "computer_name": "FIN-WS-204",
+      "event_id": 4624,
+      "event_name": "Logon Success",
+      "process_name": "svchost.exe",
+      "user": "FIN\\svc_maintenance",
+      "severity": "Medium"
+    },
+    {
+      "timestamp": "2026-09-15T08:36:12Z",
+      "computer_name": "FIN-DC-01",
+      "event_id": 4771,
+      "event_name": "Kerberos pre-authentication failed",
+      "process_name": "lsass.exe",
+      "user": "FIN\\admin_user",
+      "severity": "Critical"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-31T05:42:35Z",
+    "total_affected": 6,
+    "scope": "Enterprise endpoints and file servers"
+  },
+  "hosts": [
+    {
+      "hostname": "FIN-WS-204",
+      "ip": "172.22.10.42",
+      "status": "Contained",
+      "role": "User workstation"
+    },
+    {
+      "hostname": "FIN-DC-01",
+      "ip": "172.22.10.10",
+      "status": "Isolated",
+      "role": "Domain controller"
+    },
+    {
+      "hostname": "FIN-SRV-12",
+      "ip": "172.22.10.51",
+      "status": "Encrypted",
+      "role": "File server"
+    },
+    {
+      "hostname": "FIN-APP-03",
+      "ip": "172.22.10.31",
+      "status": "Pending triage",
+      "role": "Application server"
+    },
+    {
+      "hostname": "FIN-NET-09",
+      "ip": "172.22.10.77",
+      "status": "Monitoring",
+      "role": "Firewall appliance"
+    },
+    {
+      "hostname": "FIN-LAP-12",
+      "ip": "172.22.10.84",
+      "status": "Re-imaged",
+      "role": "Remote endpoint"
+    }
+  ]
+}
